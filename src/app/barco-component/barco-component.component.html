@@ -1,0 +1,47 @@
+<div class="card border-primary mb-3 mt-3">
+    <div class="card-header text-center">Listado de Barcos</div>
+    <div class="card-body text-primary">
+        <!-- <h5 class="card-title">Listado de barcos</h5> -->
+
+<div class="my-2 text-left">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/barcos/form']">Crear Barco</button>
+</div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Matricula</th>
+                <th class="text-center">Nº amarre</th>
+                <th class="text-center">Cuota</th>
+                <th class="text-center">Persona ID</th>
+                <th class="text-center">Editar</th>
+                <th class="text-center">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let barco of barcos">
+                <td class="text-center">{{barco.id}}</td>
+                <td class="text-center">{{barco.matricula}}</td>
+                <td class="text-center">{{barco.n_amarre}}</td>
+                <td class="text-center">{{barco.cuota}}</td>
+                <td class="text-center">{{barco.personaId}}</td>
+                <td class="text-center">
+                    <button type="button" name="editar" [routerLink]="['/barcos/form', barco.id]" class="btn btn-primary btn-sm">Editar</button>
+                </td>
+                <td class="text-center">
+                    <button type="button" name="eliminar" (click)="delete(barco)" class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+                <!-- <td>
+                    <select name="personasId" id="personasId" class="form-select form-select-sm text-center" aria-label="Small select example" >
+                        <option value="1" class="text-center">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </td>-->
+                
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+</div>

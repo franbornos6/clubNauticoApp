@@ -1,0 +1,44 @@
+<div class="card border-primary mb-3 mt-3">
+    <div class="card-header text-center">Listado de Personas</div>
+    <div class="card-body text-primary">
+        <!-- <h5 class="card-title text-center">Listado de personas</h5> -->
+
+<div class="my-2 text-left">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/personas/form']">Crear Persona</button>
+</div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">DNI</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Apellidos</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">¿Es Socio?</th>
+                <th class="text-center">¿Es Patron?</th>
+                <th class="text-center">Editar</th>
+                <th class="text-center">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let persona of personas">
+                <td class="text-center">{{persona.id}}</td>
+                <td class="text-center">{{persona.dni}}</td>
+                <td class="text-center">{{persona.nombre}}</td>
+                <td class="text-center">{{persona.apellidos}}</td>
+                <td class="text-center">{{persona.telefono}}</td>
+                <td class="text-center">{{persona.esSocio==true? 'Si': 'No'}}</td>
+                <td class="text-center">{{persona.esPatron==true? 'Si': 'No'}}</td>
+                <td class="text-center">
+                    <button type="button" name="editar" [routerLink]="['/personas/form', persona.id]" class="btn btn-primary btn-sm">Editar</button>
+                </td>
+                <td class="text-center">
+                    <button type="button" name="eliminar" (click)="delete(persona)" class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+</div>

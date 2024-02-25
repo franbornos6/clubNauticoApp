@@ -1,0 +1,69 @@
+<div class="card bg-dark text-white">
+    <div *ngIf="!id" class="card-header text-center">{{titulo1}}</div>
+    <div *ngIf="id" class="card-header text-center">{{titulo2}}</div>
+    <div class="card-body">
+        <form [formGroup]="formBarco">
+            
+            <div class="form-group row mb-3">
+
+                <label class="form-label">Matricula</label>
+
+                <input *ngIf="!id" type="text" formControlName="matricula" class="form-control" placeholder="Por favor ingrese su matricula">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="barco.matricula" formControlName="matricula">
+                <div class="alert alert-danger mt-2" [hidden]="matricula.valid || matricula.pristine">
+                    La matricula es obligatoria
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">Nº Amarre</label>
+
+                <input *ngIf="!id" type="text" formControlName="n_amarre" class="form-control" placeholder="Por favor ingrese su número de amarre">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="barco.n_amarre" formControlName="n_amarre">
+                <div class="alert alert-danger mt-2" [hidden]="n_amarre.valid || n_amarre.pristine">
+                    El número de amarre es obligatorio
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">Cuota</label>
+
+                <input *ngIf="!id" type="text" formControlName="cuota" class="form-control" placeholder="Por favor ingrese su cuota">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="barco.cuota" formControlName="cuota" >
+
+                <div class="alert alert-danger mt-2" [hidden]="cuota.valid || cuota.pristine">
+                    La cuota es obligatoria
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">ID Persona Propietario</label>
+
+                <!-- <input *ngIf="!id" type="checkbox" formControlName="esSocio"> -->
+                <!-- <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.esSocio" formControlName="esSocio"> -->
+                <select *ngIf="!id" formControlName="personaId" class="form-select form-select-sm" aria-label="Small select example">
+                    <option value=10>10</option>
+                    <option value=11>11</option>
+                </select>
+                <select *ngIf="id" formControlName="personaId" [(ngModel)]="barco.personaId" class="form-select form-select-sm" aria-label="Small select example">
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <div class="co-sm-6">
+                    <button *ngIf="!id" class="btn btn-primary" role="button" (click)="create()">Crear</button>
+
+                    
+                        <button *ngIf="id" class="btn btn-primary" role="button" (click)="update()">Editar</button>
+    
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+<div class="card bg-dark text-white">
+    <div *ngIf="!id" class="card-header text-center">{{titulo1}}</div>
+    <div *ngIf="id" class="card-header text-center">{{titulo2}}</div>
+    <div class="card-body">
+        <form [formGroup]="formPersona">
+            
+            <div class="form-group row mb-3">
+
+                <label class="form-label">DNI</label>
+
+                <input *ngIf="!id" type="text" formControlName="dni" class="form-control" placeholder="Por favor ingrese su dni">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.dni" formControlName="dni">
+                <div class="alert alert-danger mt-2" [hidden]="dni.valid || dni.pristine">
+                    El dni es obligatorio
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">Nombre</label>
+
+                <input *ngIf="!id" type="text" formControlName="nombre" class="form-control" placeholder="Por favor ingrese su nombre">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.nombre" formControlName="nombre">
+                <div class="alert alert-danger mt-2" [hidden]="nombre.valid || nombre.pristine">
+                    El nombre es obligatorio
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">Apellidos</label>
+
+                <input *ngIf="!id" type="text" formControlName="apellidos" class="form-control" placeholder="Por favor ingrese sus apellidos">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.apellidos" formControlName="apellidos" >
+
+                <div class="alert alert-danger mt-2" [hidden]="apellidos.valid || apellidos.pristine">
+                    Los apellidos son obligatorio
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">Teléfono</label>
+
+                <input *ngIf="!id" type="text" formControlName="telefono" class="form-control" placeholder="Por favor ingrese su telefono">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.telefono" formControlName="telefono">
+                <div class="alert alert-danger mt-2" [hidden]="telefono.valid || telefono.pristine">
+                    El telefono es obligatorio
+                </div>
+            </div>
+
+            <!-- <div class="form-group col md-3">
+
+                <label class="form-label mx-3">¿Es Socio?</label>
+
+                <input *ngIf="!id" type="checkbox" formControlName="esSocio">
+                <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.esSocio" formControlName="esSocio">
+            </div> -->
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">¿Es Socio?</label>
+
+                <!-- <input *ngIf="!id" type="checkbox" formControlName="esSocio"> -->
+                <!-- <input *ngIf="id" type="text" class="form-control" [(ngModel)]="persona.esSocio" formControlName="esSocio"> -->
+                <select *ngIf="!id" formControlName="esSocio" class="form-select form-select-sm" aria-label="Small select example">
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+                <select *ngIf="id" formControlName="esSocio" [(ngModel)]="persona.esSocio" class="form-select form-select-sm" aria-label="Small select example">
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group row mb-3">
+
+                <label class="form-label">¿Es Patrón?</label>
+
+                <!-- <input type="checkbox" formControlName="esPatron"> -->
+                <select *ngIf="!id" formControlName="esPatron" class="form-select form-select-sm" aria-label="Small select example">
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+                <select *ngIf="id" formControlName="esPatron" [(ngModel)]="persona.esPatron" class="form-select form-select-sm" aria-label="Small select example">
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <div class="co-sm-6">
+                    <button *ngIf="!id" class="btn btn-primary" role="button" (click)="create()">Crear</button>
+
+                    
+                        <button *ngIf="id" class="btn btn-primary" role="button" (click)="update()">Editar</button>
+    
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--
+<div class="card bg-dark text-white">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+
+        <form>
+            <div class="form-group row mb-3">
+                <label for="dni" class="col-form-label col-sm-2">DNI</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="persona.dni" name="dni">
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="persona.nombre" name="nombre">
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label for="apellidos" class="col-form-label col-sm-2">Apellidos</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="persona.apellidos" name="apellidos">
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label for="telefono" class="col-form-label col-sm-2">Teléfono</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="persona.telefono" name="telefono">
+                </div>
+            </div>
+            
+
+
+            <div class="form-check mb-3">
+                <label class="form-check-label" for="flexCheckDefault">¿Es Socio?</label>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="persona.esSocio" name="esSocio">
+              </div>
+
+            <div class="form-check mb-3">
+            <label class="form-check-label" for="flexCheckDefault">¿Es Patrón?</label>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="persona.esPatron" name="esPatron">
+            </div>
+            
+
+
+            <div class="form-check form-check-inline mb-3">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" [(ngModel)]="persona.esSocio" name="esSocio" [checked]="personaEsSocio">
+                <label class="form-check-label" for="inlineCheckbox1">¿Es Socio?</label>
+              </div>
+              <div class="form-check form-check-inline mb-3">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" [(ngModel)]="persona.esPatron" name="esPatron" [checked]="persona.esPatron">
+                <label class="form-check-label" for="inlineCheckbox2">¿Es Patrón?</label>
+              </div>
+
+            <div class="form-group row">
+                <div class="co-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!persona.id else elseBlock">Crear</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)="update()">Editar</button>
+                    </ng-template>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+-->
